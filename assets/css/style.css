@@ -1,0 +1,238 @@
+:root{--ink:#171717;--muted:#777;--paper:#f7f6f2;--line:#d8d6cf;--placeholder:#e9e7e1}
+*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}body{margin:0;max-width:100%;overflow-x:hidden;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-weight:300}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto}
+.site-header{height:104px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;letter-spacing:.11em;font-size:12px}.name{font-weight:600}.site-header nav{display:flex;gap:30px}.site-header nav a{color:#555}.site-header nav a:hover{color:#000}
+main{width:min(1240px,90vw);max-width:100%;margin:auto}.hero{min-height:calc(100svh - 104px);padding:3vh 0 2vh;display:grid;grid-template-rows:minmax(0,1fr) auto auto;align-items:center}.hero-photo{display:block;width:auto;max-width:100%;height:auto;max-height:calc(100svh - 245px);object-fit:contain;margin:0 auto}.signature{width:100%;text-align:right;margin:14px 0 0;font-family:Georgia,serif;font-style:italic;font-size:15px;color:#555}.scroll-cue{justify-self:center;align-self:end;margin-top:12px;font-family:Arial,Helvetica,sans-serif;font-size:19px;font-weight:300;line-height:1;color:#777;opacity:.72;transition:opacity .2s ease,transform .2s ease}.scroll-cue:hover{opacity:1;transform:translateY(2px)}
+.photo-placeholder{background:var(--placeholder);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8c8a84;letter-spacing:.12em;font-size:11px}.photo-placeholder small{margin-top:8px;letter-spacing:.04em;text-transform:none}
+.intro{min-height:42vh;display:flex;align-items:center;justify-content:center;padding-top:2vh}.intro p{font-family:Georgia,serif;font-size:clamp(22px,2.3vw,34px);line-height:1.5;max-width:720px;text-align:center;font-weight:normal}
+.series{padding:12vh 0}.series>h1{font-size:12px;text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin:0 0 12vh}.series-card{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(220px,.7fr);gap:7vw;align-items:center;margin-bottom:20vh;min-width:0}.series-card>*{min-width:0}.series-card.reverse{grid-template-columns:minmax(220px,.7fr) minmax(0,1.7fr)}.series-card.reverse .photo-placeholder{order:2}.landscape{aspect-ratio:3/2}.portrait{aspect-ratio:4/5;max-height:650px}.square{aspect-ratio:1/1;max-height:650px}.series-copy h2{font-family:Georgia,serif;font-size:clamp(25px,3vw,42px);font-weight:normal;margin:0 0 13px}.series-copy p{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.about{min-height:65vh;display:flex;align-items:center}.about p{font-family:Georgia,serif;font-size:20px;line-height:1.8;max-width:580px}
+footer{border-top:1px solid var(--line);margin:0 5vw;padding:32px 0 45px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.08em;color:#666}
+@media(max-height:760px) and (min-width:701px){.hero{min-height:calc(100svh - 104px);padding-top:2vh;padding-bottom:1.5vh}.hero-photo{max-height:calc(100svh - 220px)}.signature{margin-top:10px}.scroll-cue{margin-top:8px}.intro{min-height:36vh}}
+@media(max-width:700px){.site-header{height:auto;min-height:80px;padding:18px 6vw;gap:14px;align-items:flex-start}.site-header nav{gap:15px;flex-wrap:wrap;justify-content:flex-end}.site-header nav a:nth-child(2){display:none}main{width:88vw}.hero{min-height:calc(100svh - 80px);padding-top:2vh;padding-bottom:2vh;grid-template-rows:auto auto 1fr}.hero-photo{width:100%;height:auto;max-height:none}.signature{margin-top:12px}.scroll-cue{align-self:end;margin-top:18px}.intro{min-height:35vh}.series-card,.series-card.reverse{grid-template-columns:1fr;gap:26px;margin-bottom:14vh}.series-card.reverse .photo-placeholder{order:0}.portrait,.square{width:80%;margin:auto}.about{min-height:50vh}.about p{font-size:18px}}
+
+.series-image{display:block;min-width:0;line-height:0;transition:opacity .2s ease}
+.series-image:hover{opacity:.88}
+.series-image img{display:block;width:100%;height:auto;max-height:680px;object-fit:contain}
+.series-card.reverse .series-image{order:2}
+.series-image.pending{position:relative;background:var(--placeholder);min-height:300px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+.series-image.pending img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.series-image.pending span{position:relative;z-index:1;line-height:1.6;text-align:center;color:#8c8a84;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.series-image.pending small{font-size:9px;letter-spacing:.08em;text-transform:none}
+@media(max-width:700px){.series-card.reverse .series-image{order:0}.series-image img{max-height:none}.series-image.pending{min-height:220px}}
+
+/* Page série : Ainsi de suite */
+.serie-main{width:min(1240px,90vw);margin:0 auto}
+.serie-title{min-height:38vh;display:flex;align-items:flex-end;padding:70px 0 54px}
+.serie-title h1{margin:0;font-size:clamp(28px,3.2vw,46px);font-weight:400;letter-spacing:-.025em}
+.serie-sequence{display:flex;flex-direction:column;gap:20vh}
+.serie-photo{margin:0;min-height:78vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.serie-photo img{display:block;max-width:min(1120px,100%);max-height:72vh;width:auto;height:auto;object-fit:contain}
+.serie-photo figcaption{width:min(1120px,100%);margin-top:18px;font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.serie-end{margin:20vh 0 12vh;padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:32px}
+.serie-end a{text-decoration:none;color:var(--ink);font-size:13px}
+.serie-end a:hover{opacity:.6}
+@media(max-width:700px){
+ .serie-title{min-height:28vh;padding:50px 0 36px}
+ .serie-sequence{gap:14vh}
+ .serie-photo{min-height:68vh}
+ .serie-photo img{max-height:62vh}
+ .serie-photo figcaption{margin-top:12px;font-size:10px}
+ .serie-end{margin-top:14vh;flex-direction:column;align-items:flex-start;gap:18px}
+}
+
+.sequence-title{
+  margin:12vh 0 -8vh;
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+@media(max-width:700px){
+  .sequence-title{margin:8vh 0 -5vh;font-size:10px}
+}
+
+
+/* V9.1 — harmonisation des trois portes d'entrée des séries */
+.series-card{
+  grid-template-columns:minmax(0,1.55fr) minmax(220px,.72fr);
+}
+.series-card.reverse{
+  grid-template-columns:minmax(220px,.72fr) minmax(0,1.55fr);
+}
+.series-image{
+  width:100%;
+  height:clamp(330px,42vw,540px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.series-image img{
+  width:100%;
+  height:100%;
+  max-height:none;
+  object-fit:contain;
+}
+@media(max-width:700px){
+  .series-image{height:auto;min-height:0}
+  .series-image img{width:100%;height:auto;max-height:68vh}
+}
+
+/* V9.2 — images d'entrée des séries : proportions naturelles, aucun recadrage */
+.series-card{grid-template-columns:minmax(0,1.45fr) minmax(250px,.75fr);align-items:center}
+.series-card.reverse{grid-template-columns:minmax(250px,.75fr) minmax(0,1.45fr)}
+.series-image{width:100%;height:auto;display:block}
+.series-image img{display:block;width:100%;height:auto;max-height:none;object-fit:contain}
+.hero-scroll{font-size:25px!important;opacity:.72!important;line-height:1}
+.hero-scroll:hover{opacity:1!important}
+@media(max-width:700px){
+ .series-card,.series-card.reverse{grid-template-columns:1fr}
+ .series-card.reverse .series-image{order:0}
+ .series-image{height:auto}
+ .series-image img{width:100%;height:auto;max-height:none}
+}
+
+/* V10 — pages éditoriales de L'âme du noir et blanc */
+.book-pages{display:flex;flex-direction:column;align-items:center;gap:16vh;margin:4vh 0 18vh}
+.book-pages figure{margin:0;width:min(680px,78vw);display:flex;justify-content:center}
+.book-pages img{display:block;max-width:100%;max-height:82vh;width:auto;height:auto;object-fit:contain}
+.opening-pages{margin-top:0}
+.closing-pages{margin-top:20vh;margin-bottom:12vh}
+.book-text{
+  width:min(560px,86vw)!important;
+  margin-top:24px!important;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:15px!important;
+  line-height:1.62;
+  letter-spacing:0!important;
+  color:#444!important;
+  text-align:left;
+  align-self:center;
+}
+.pdf-scroll{width:min(980px,92vw);margin:0 auto;padding:11vh 0 8vh}
+.pdf-page{margin:0 0 11vh;display:flex;justify-content:center}
+.pdf-page img{display:block;max-width:100%;max-height:88vh;width:auto;height:auto;object-fit:contain}
+.hidden-work-end{margin-top:8vh}
+@media(max-width:700px){
+ .book-pages{gap:10vh}
+ .book-pages figure{width:88vw}
+ .book-text{font-size:14px!important;line-height:1.55}
+ .pdf-page{margin-bottom:7vh}
+}
+
+
+/* V11 — repère de navigation persistant */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(247,246,242,.94);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+}
+.site-header .name,.site-header .brand{white-space:nowrap}
+
+/* À propos */
+.about{min-height:78vh;padding:12vh 0;align-items:center}
+.about-inner{width:min(680px,100%)}
+.about h2{
+  margin:0 0 42px;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-family:Arial,Helvetica,sans-serif;
+  font-weight:500;
+}
+.about p{
+  max-width:680px;
+  margin:0 0 24px;
+  font-family:Georgia,serif;
+  font-size:19px;
+  line-height:1.75;
+}
+.about .about-conclusion{margin-top:46px}
+
+/* Entre — couverture seule puis livre en doubles pages */
+.entre-main{width:min(1320px,94vw);margin:0 auto}
+.entre-main .serie-title{width:min(1240px,90vw);margin:0 auto}
+.entre-cover{margin:2vh auto 18vh;width:min(620px,72vw);display:flex;justify-content:center}
+.entre-cover img{display:block;width:100%;height:auto}
+.entre-spreads{display:flex;flex-direction:column;gap:14vh}
+.entre-spread{margin:0 auto;width:min(1220px,94vw);display:flex;justify-content:center}
+.entre-spread img{display:block;width:100%;height:auto;object-fit:contain}
+.entre-main .serie-end{width:min(1240px,90vw);margin-left:auto;margin-right:auto}
+@media(max-width:700px){
+  .about{padding:8vh 0}
+  .about h2{margin-bottom:30px}
+  .about p{font-size:17px;line-height:1.65}
+  .about .about-conclusion{margin-top:34px}
+  .entre-cover{width:82vw;margin-bottom:12vh}
+  .entre-spreads{gap:9vh}
+  .entre-spread{width:94vw}
+}
+
+
+/* V11.1 — textes d’introduction validés */
+.serie-intro{
+  width:min(620px,86vw);
+  margin:0 auto 16vh;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:17px;
+  line-height:1.7;
+  color:#444;
+}
+.serie-intro p{margin:0 0 18px}
+.serie-intro p:last-child{margin-bottom:0}
+.entre-main .serie-intro{width:min(620px,86vw)}
+@media(max-width:700px){
+  .serie-intro{
+    margin-bottom:11vh;
+    font-size:16px;
+    line-height:1.65;
+  }
+}
+
+
+/* V11.2 — navigation réellement flottante */
+.site-header{
+  position:fixed!important;
+  top:0;
+  left:0;
+  right:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(247,246,242,.94);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+}
+body{padding-top:104px}
+.site-header .name{
+  position:relative;
+  z-index:1001;
+}
+@media(max-width:700px){
+  body{padding-top:80px}
+}
+
+
+/* V11.5 — identité de navigation strictement identique sur toutes les pages */
+.site-header .name{
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:12px!important;
+  line-height:1!important;
+  font-weight:600!important;
+  letter-spacing:.11em!important;
+  text-transform:none!important;
+  white-space:nowrap;
+}
+
+
+/* V11.6 — flèche d'accueil plus lisible */
+.scroll-cue{
+  color:#3f3f3f!important;
+  opacity:.95!important;
+  font-weight:400!important;
+}
+.scroll-cue:hover{
+  opacity:1!important;
+}
