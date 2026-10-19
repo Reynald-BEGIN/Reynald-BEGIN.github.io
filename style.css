@@ -255,3 +255,28 @@ body{padding-top:104px}
 .about-link a:hover{
   border-bottom-color:rgba(0,0,0,.8);
 }
+
+
+/* V11.12 — entretien Street Photography France */
+.about-interview{
+  margin-top:34px;
+}
+.about-interview > p:first-child{
+  margin-bottom:14px;
+}
+.about-link{
+  margin-top:0!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:13px!important;
+  line-height:1.4!important;
+  letter-spacing:.04em!important;
+}
+.about-link a{
+  color:#2f5fa7!important;
+  text-decoration:none!important;
+  border-bottom:none!important;
+}
+.about-link a:hover,
+.about-link a:focus{
+  text-decoration:underline!important;
+}
