@@ -144,3 +144,31 @@ document.addEventListener("click", function (event) {
     }
   });
 })();
+
+
+/* V13.1 — Arrivée sur les séries : titre plus haut, images inchangées.
+ * Les trois séries partagent ce réglage. Les dimensions, légendes et
+ * espacements entre photographies ne sont pas modifiés.
+ */
+(function () {
+  "use strict";
+  if (!document.querySelector(".serie-title")) return;
+
+  const style = document.createElement("style");
+  style.id = "rb-debut-series";
+  style.textContent = `
+    .serie-main > .serie-title,
+    .entre-main > .serie-title {
+      min-height: clamp(120px, 14svh, 168px);
+      padding: 22px 0 20px;
+    }
+    @media (max-width: 700px) {
+      .serie-main > .serie-title,
+      .entre-main > .serie-title {
+        min-height: clamp(110px, 16svh, 150px);
+        padding: 18px 0 16px;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+})();
