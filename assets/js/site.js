@@ -17,8 +17,8 @@ document.addEventListener("click", function (event) {
 });
 
 /*
- * Menu « Séries » du bandeau — novembre 2026.
- * Pour ajouter une série plus tard : ajouter une ligne dans la liste ci-dessous.
+ * Menu « Expositions » du bandeau — novembre 2026.
+ * Pour ajouter une salle plus tard : ajouter une ligne dans la liste ci-dessous.
  * Chaque entrée comporte un titre, une année et le nom du fichier HTML.
  * « Une seconde traversée » n'y figure pas : c'est une lecture complémentaire.
  */
@@ -28,14 +28,14 @@ document.addEventListener("click", function (event) {
   const series = [
     { titre: "Ainsi de suite", annee: "2026", page: "ainsi-de-suite.html" },
     { titre: "L’âme du noir et blanc", annee: "2026", page: "ame-du-noir-et-blanc.html" },
-    { titre: "Entre !", annee: "2026", page: "entre.html" }
+    { titre: "Entre", annee: "2026", page: "entre.html" }
   ];
 
   const nav = document.querySelector(".site-header > nav");
   if (!nav) return;
 
   const ancienLien = Array.from(nav.children).find(function (element) {
-    return element.tagName === "A" && element.textContent.trim() === "Séries";
+    return element.tagName === "A" && element.textContent.trim() === "Expositions";
   });
   if (!ancienLien) return;
 
@@ -87,6 +87,9 @@ document.addEventListener("click", function (event) {
       color:#777; font-size:11px; font-weight:400;
       letter-spacing:.04em; font-variant-numeric:tabular-nums;
     }
+    .site-header nav .rb-menu-series .rb-menu-separator {
+      display:block; height:0; margin:6px 15px 8px; border-top:1px solid var(--line,#d8d6cf);
+    }
     @media (max-width:700px) {
       .site-header nav .rb-menu-series .rb-menu-series-liste {
         left:auto; right:-72px;
@@ -106,14 +109,29 @@ document.addEventListener("click", function (event) {
   menu.className = "rb-menu-series";
 
   const ouverture = document.createElement("summary");
-  ouverture.textContent = "Séries";
-  ouverture.setAttribute("aria-label", "Afficher la liste des séries");
+  ouverture.textContent = "Expositions";
+  ouverture.setAttribute("aria-label", "Afficher les expositions");
 
   const liste = document.createElement("div");
   liste.className = "rb-menu-series-liste";
-  liste.setAttribute("aria-label", "Choisir une série photographique");
+  liste.setAttribute("aria-label", "Choisir une exposition photographique");
 
+  const accueilExpositions = document.createElement("a");
+  accueilExpositions.href = "expositions.html";
+  accueilExpositions.className = "rb-menu-accueil";
+  const accueilTitre = document.createElement("span");
+  accueilTitre.textContent = "Entrée de l’exposition";
+  const accueilDetail = document.createElement("span");
+  accueilDetail.className = "rb-menu-series-annee";
+  accueilDetail.textContent = "3 salles";
+  accueilExpositions.append(accueilTitre, accueilDetail);
+  liste.appendChild(accueilExpositions);
+  const separateur = document.createElement("div");
+  separateur.className = "rb-menu-separator";
+  separateur.setAttribute("aria-hidden", "true");
+  liste.appendChild(separateur);
   const pageActuelle = window.location.pathname.split("/").pop() || "index.html";
+  if (pageActuelle === "expositions.html") accueilExpositions.setAttribute("aria-current", "page");
   series.forEach(function (serie) {
     const lien = document.createElement("a");
     lien.href = serie.page;

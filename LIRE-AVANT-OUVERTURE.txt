@@ -1,0 +1,31 @@
+VERSION LOCALE DE TRAVAIL — REYNALD BEGIN
+Création : 16 novembre 2026
+Base : ZIP du dépôt GitHub (sauvegarde du 16 novembre 2026)
+
+OUVRIR : double-cliquez sur index.html dans ce dossier.
+Toutes les photographies, textes, poèmes, couvertures et doubles pages du ZIP
+source sont conservés. Les images sont locales : pas de dépendance à un serveur.
+
+PARCOURS :
+  Accueil (index.html) : photographie originale et flèche vers les expositions.
+  Expositions (expositions.html) : accueil de la visite et entrée des 3 salles.
+  SALLE 01 — Ainsi de suite (septembre 2026)
+  SALLE 02 — L'âme du noir et blanc (octobre 2026)
+  SALLE 03 — Entre (octobre 2026)
+  Une seconde traversée : page complémentaire conservée.
+  À propos : texte historique conservé sur la page d'accueil.
+
+MODIFICATIONS PAR RAPPORT AUX SOURCES :
+  - « Séries » est devenu « Expositions » dans la navigation visible.
+  - L'introduction jadis sous la photo est placée sur expositions.html.
+  - Le texte de bienvenue proposé est affiché au singulier.
+  - « Entre ! » est corrigé en « Entre » dans les textes et titres du site.
+  - 3 tonalités de salles sont proposées, mais elles ne sont pas définitives.
+  - Les poèmes sont présentés sur des panneaux typographiques provisoires,
+    sans aucune modification de leur contenu.
+  - Compteur de visites distant désactivé en mode local pour éviter de
+    comptabiliser vos essais comme des visites publiques.
+  - La navigation retourne maintenant à la page d'entrée des expositions.
+
+AUCUNE MODIFICATION DU SITE PUBLIC : ce dossier est un prototype local.
+L'archive originale GitHub doit être gardée séparément comme sauvegarde.
